@@ -92,4 +92,9 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    public void HaltTurnManager()
+    {
+        StopAllCoroutines();
+    }
+
 }
