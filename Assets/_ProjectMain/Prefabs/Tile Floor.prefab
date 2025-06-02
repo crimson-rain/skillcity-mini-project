@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8365187193801378071}
   - component: {fileID: 3732909416575687613}
   m_Layer: 6
-  m_Name: Tiile Walk
+  m_Name: Tile Floor
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
