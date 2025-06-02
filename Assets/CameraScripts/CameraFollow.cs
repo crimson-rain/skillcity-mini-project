@@ -68,7 +68,7 @@ public class CameraFollow : MonoBehaviour {
 
 	private void CamFollow()
 	{
-		Vector3 cursorWorldPos = playerToMouse.mouseInWorldPos;
+		Vector3 cursorWorldPos = playerToMouse.mouseInWorldPos;	
 		centre = new Vector3 ((target.position.x + cursorWorldPos.x) / 2.0f, 0f, (cursorWorldPos.z + target.position.z) / 2.0f); // calculate centre between player and mouse
 
 		Vector3 currentPos = Vector3.Lerp (transform.position, centre + new Vector3 (0f, height, -offset), Time.deltaTime * damping); // lerp from current pos to centre. (doing this will give slowing down effect as it apreaces its destination)
