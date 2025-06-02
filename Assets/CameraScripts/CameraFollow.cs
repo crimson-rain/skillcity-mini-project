@@ -30,6 +30,7 @@ public class CameraFollow : MonoBehaviour {
 	private float damping;                          // how fast camera travels to its destination
 	[SerializeField] 
 	private float rotationSpeed;
+	private bool rotatingCamera = false;
 
     [SerializeField] float playerToscreenEdgeLimit;		//how close to the screen the player can be
 	[SerializeField] LayerMask maskFloorLayer;			// mask 
@@ -61,7 +62,7 @@ public class CameraFollow : MonoBehaviour {
 	void LateUpdate () {
 
 		ScrollHeight (heightMin,heightMax);
-		RotateCameraAround();
+		//RotateCameraAround();
 
         CamFollow ();
 	}
@@ -182,20 +183,20 @@ public class CameraFollow : MonoBehaviour {
 	{
         if (Input.GetMouseButton(2))
         {
-			//Vector3 offset = new Vector3(0f,0f,0f);
-			Vector3 camPos = transform.position;
+			//Vector3 offsetRot = new Vector3(0f,0f,0f);
+			Vector3 camPos = transform.localPosition;
 
             float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
 
 			//float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
 			camPos.x += mouseX;
 			
-			transform.position = camPos;
+			transform.localPosition = camPos;
 
 
             // Rotate the offset around the player
-            //offset = Quaternion.AngleAxis(mouseX, Vector3.up) * offset; // Horizontal rotation
-           // offset = Quaternion.AngleAxis(-mouseY, transform.right) * offset; // Vertical rotation
+           // offsetRot = Quaternion.AngleAxis(mouseX, Vector3.up) * offset; // Horizontal rotation
+            //offsetRot = Quaternion.AngleAxis(-mouseY, transform.right) * offset; // Vertical rotation
 
             // Update camera position
             //transform.position = target.position + offset;
