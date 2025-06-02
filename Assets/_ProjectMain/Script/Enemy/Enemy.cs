@@ -113,83 +113,83 @@ public class Enemy : MonoBehaviour
 
     private void DecidePlan()//decides high level gameplan
     {
-        if (target == null) return;
+        //if (target == null) return;
 
-        Stats playerStats = target.GetComponent<Stats>();
-        if (playerStats == null) return;
+        //Stats playerStats = target.GetComponent<Stats>();
+        //if (playerStats == null) return;
 
-        Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);
-        Vector2Int playerPos = GridUtility.WorldToGridPosition(target.transform.position);
+        //Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);
+        //Vector2Int playerPos = GridUtility.WorldToGridPosition(target.transform.position);
 
-        int distanceToPlayer = PathfindingUtility.GetPathLength(myPos, playerPos);
+        //int distanceToPlayer = PathfindingUtility.GetPathLength(myPos, playerPos);
         
 
-        if(distanceToPlayer > stats.detectionRange)
-        {
-           HandlePercentages(probabilities, "Move", 100f, isAbsolute: true, locks);
-            locks["Move"] = true;
+        //if(distanceToPlayer > stats.detectionRange)
+        //{
+        //   HandlePercentages(probabilities, "Move", 100f, isAbsolute: true, locks);
+        //    locks["Move"] = true;
             
 
-            return;
-        }//if not in detection just move about
+        //    return;
+        //}//if not in detection just move about
 
-        if(stats.intelligence ==0)
-        {
-            HandlePercentages(probabilities, "Attack", 100f, isAbsolute: true, locks);
-            locks["Attack"] = true;
-        }
+        //if(stats.intelligence ==0)
+        //{
+        //    HandlePercentages(probabilities, "Attack", 100f, isAbsolute: true, locks);
+        //    locks["Attack"] = true;
+        //}
 
 
 
-        //int closestEnemyDist = int.MaxValue;
-        foreach (Enemy other in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
-        {
-            if (other == this) continue;
+        ////int closestEnemyDist = int.MaxValue;
+        //foreach (Enemy other in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+        //{
+        //    if (other == this) continue;
 
-            Vector2Int otherPos = GridUtility.WorldToGridPosition(other.transform.position);
-            int dist = PathfindingUtility.GetPathLength(myPos, otherPos);
-            if (dist < stats.allyThreshold) closeAlly ++;
-        }
-        if (closeAlly == 0) closeAlly = 1;
-        switch(stats.personality)
-        {
-            case PersonalityType.Shy:
-            HandlePercentages(probabilities, "Attack", -50/closeAlly, isAbsolute: false, locks);
-            break;
-            case PersonalityType.Aggressive:
-            HandlePercentages(probabilities, "Attack", 10 * closeAlly, isAbsolute: false, locks);
-            break;
-        }//emboldens based on personality type and number of close allies
+        //    Vector2Int otherPos = GridUtility.WorldToGridPosition(other.transform.position);
+        //    int dist = PathfindingUtility.GetPathLength(myPos, otherPos);
+        //    if (dist < stats.allyThreshold) closeAlly ++;
+        //}
+        //if (closeAlly == 0) closeAlly = 1;
+        //switch(stats.personality)
+        //{
+        //    case PersonalityType.Shy:
+        //    HandlePercentages(probabilities, "Attack", -50/closeAlly, isAbsolute: false, locks);
+        //    break;
+        //    case PersonalityType.Aggressive:
+        //    HandlePercentages(probabilities, "Attack", 10 * closeAlly, isAbsolute: false, locks);
+        //    break;
+        //}//emboldens based on personality type and number of close allies
 
      
-        if (stats.currentHealth < 5)//retreat if low health
-        {
-            if (stats.personality == PersonalityType.Shy)
-            {
-                HandlePercentages(probabilities, "Retreat", 80 , isAbsolute: false, locks);
-            }
-            else
-            {
-                HandlePercentages(probabilities, "Retreat", -20 , isAbsolute: false, locks);
-            }
-        }
+        //if (stats.currentHealth < 5)//retreat if low health
+        //{
+        //    if (stats.personality == PersonalityType.Shy)
+        //    {
+        //        HandlePercentages(probabilities, "Retreat", 80 , isAbsolute: false, locks);
+        //    }
+        //    else
+        //    {
+        //        HandlePercentages(probabilities, "Retreat", -20 , isAbsolute: false, locks);
+        //    }
+        //}
 
-        if (playerStats.currentHealth < stats.damage)//Embolden if can kill
-        {
-            if (stats.personality == PersonalityType.Shy)
-            {
-                HandlePercentages(probabilities, "Attack", 50, isAbsolute: false, locks);
-            }
-            else
-            {
-                HandlePercentages(probabilities, "Attack", 80, isAbsolute: false, locks);
-            }
-        }
+        //if (playerStats.currentHealth < stats.damage)//Embolden if can kill
+        //{
+        //    if (stats.personality == PersonalityType.Shy)
+        //    {
+        //        HandlePercentages(probabilities, "Attack", 50, isAbsolute: false, locks);
+        //    }
+        //    else
+        //    {
+        //        HandlePercentages(probabilities, "Attack", 80, isAbsolute: false, locks);
+        //    }
+        //}
 
-        if(distanceToPlayer == 1)//flat buff if in melee
-        {
-            HandlePercentages(probabilities, "Attack", 50, isAbsolute: false, locks);
-        }
+        //if(distanceToPlayer == 1)//flat buff if in melee
+        //{
+        //    HandlePercentages(probabilities, "Attack", 50, isAbsolute: false, locks);
+        //}
 
         
     }
