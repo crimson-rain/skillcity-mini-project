@@ -132,6 +132,15 @@ public class DungeonGenerator : MonoBehaviour
         itemSpawner.BatchSpawn(5);
         enemySpawner.BatchSpawn(5);
         trapSpawner.BatchSpawn(5);
+
+        foreach(GameObject game in DungeonContainer.FindAnyObjectByType<DungeonContainer>().dungeonObjects)
+        {
+            game.SetActive(false);
+        }//set each tile to false to act as "fog"
+
+        //Generate Seen tiles
+        Fog fog = FindAnyObjectByType<Fog>();
+        fog.ExposeTiles();
     }
 
     private void DecideDungeonType()
