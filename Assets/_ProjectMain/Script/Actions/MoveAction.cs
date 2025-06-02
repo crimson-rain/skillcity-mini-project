@@ -28,6 +28,8 @@ public class MoveAction : GameAction
                 break;
             }
 
+            Fog fog = player.GetComponent<Fog>();
+            fog.ExposeTiles();
             // Player moves exactly one tile
             yield return player.StepTo(step);
 
