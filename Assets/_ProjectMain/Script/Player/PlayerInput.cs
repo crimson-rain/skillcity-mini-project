@@ -100,23 +100,31 @@ namespace AYellowpaper.SerializedCollections.Editor
             string abilityName = "";
             switch (abilityID)
             {
-                case 1:
-                abilityName = "Weak Slash";
-                break;
-                case 2:
-                abilityName = "Strong Slash";
-                break;
-                case 3:
-                abilityName = "Place Mine";
-                break;
-                case 4:
-                abilityName = "Throw Weapon";
-                break;
+                case 1: abilityName = "Weak Slash"; break;
+                case 2: abilityName = "Strong Slash"; break;
+                case 3: abilityName = "Place Mine"; break;
+                case 4: abilityName = "Throw Weapon"; break;
+            }
+
+            if (sprite == null)
+            {
+                Debug.LogError("SpriteHandler reference is null!");
+                return;
+            }
+
+            if (!abilitySprites.ContainsKey(abilityName))
+            {
+                Debug.LogError($"Ability name '{abilityName}' not found in abilitySprites!");
+                return;
+            }
+
+            if (abilitySprites[abilityName] == null)
+            {
+                Debug.LogError($"Sprite for ability '{abilityName}' is null!");
+                return;
             }
 
             sprite.SetSprite(abilitySprites[abilityName]);
-            
-            //text.text = ("Current Ability: " + abilityName);
         }
 
         private void CheckInRangeThenExecute(Func<int, int, bool> condition, int distance, int range, GameAction action)

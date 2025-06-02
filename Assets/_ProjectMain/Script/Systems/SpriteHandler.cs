@@ -3,25 +3,24 @@ using UnityEngine.UI;
 
 public class SpriteHandler : MonoBehaviour
 {
-    Image image;
+    [SerializeField] private Image image;
 
-    private void Start()
+    private void Awake()
     {
-        image = GetComponent<Image>();
+        if (image == null)
+        {
+            Debug.LogError("SpriteHandler: Image not assigned in Inspector! " + gameObject.name);
+        }
     }
 
-    private void Update()
-    {
-        //Color color = image.color;
-        //color.a = image.sprite == null ? 0f : 1f;
-        //image.color = color;
-    }
     public void SetSprite(Sprite sprite)
     {
-        image.sprite = sprite;  
+        if (image == null) return;
+
+        image.sprite = sprite;
         Color color = image.color;
         color.a = image.sprite == null ? 0f : 1f;
         image.color = color;
-
     }
 }
+
