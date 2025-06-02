@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 4537583953945621497}
   - component: {fileID: 5018455087943040667}
   m_Layer: 0
-  m_Name: Enemy Aggresive Int
+  m_Name: Bandit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

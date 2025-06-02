@@ -244,7 +244,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.14644662, w: 0.8535534}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 2}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7429149194246227086}
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 81085102, guid: 221b2df392eecee4ba3d65804808b7cb, type: 3}
+  m_Sprite: {fileID: 1512356792, guid: b40f732dc526c7d4aa2dbbcaaa354bc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 4537583953945621497}
   - component: {fileID: 5018455087943040667}
   m_Layer: 0
-  m_Name: Enemy Shy
+  m_Name: Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ Transform:
   - {fileID: 1553498650919574913}
   - {fileID: 1757567008593776159}
   - {fileID: 385203938846764447}
-  - {fileID: 6831053454317029862}
+  - {fileID: 7111462042719529779}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9004713483239849431
@@ -386,25 +386,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd84bb92acd66342bdd5a90e41f80ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personality: 2
+  personality: 1
   level: 0
   energy: 0
-  currentHealth: 7
-  maxHealth: 7
+  currentHealth: 0
+  maxHealth: 10
   armour: 0
   maxArmour: 0
-  damage: 3
+  damage: 5
   attackRange: 1
-  detectionRange: 12
-  allyThreshold: 2
-  intelligence: 5
+  detectionRange: 10
+  allyThreshold: 3
+  intelligence: 3
   xp: 0
   xpToNextLevel: 0
   xpIncrease: 0
   xpOnDeath: 1
   multiplyXP: 0
   currentAction: 
-  healthBar: {fileID: 7852402252169517646}
+  healthBar: {fileID: 5802164498302744731}
 --- !u!114 &5018455087943040667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561381f57077b9c44bfd6567958251cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &5909123484246808465
+--- !u!1001 &7961615787830949188
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -427,7 +427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 230443684473239963, guid: 06efe0985a668eb4b8030d78aa924c0b, type: 3}
       propertyPath: m_Name
-      value: Health Bar 1
+      value: Health Bar
       objectReference: {fileID: 0}
     - target: {fileID: 922580883242131063, guid: 06efe0985a668eb4b8030d78aa924c0b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -474,15 +474,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06efe0985a668eb4b8030d78aa924c0b, type: 3}
---- !u!4 &6831053454317029862 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 922580883242131063, guid: 06efe0985a668eb4b8030d78aa924c0b, type: 3}
-  m_PrefabInstance: {fileID: 5909123484246808465}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7852402252169517646 stripped
+--- !u!114 &5802164498302744731 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4537441216026480095, guid: 06efe0985a668eb4b8030d78aa924c0b, type: 3}
-  m_PrefabInstance: {fileID: 5909123484246808465}
+  m_PrefabInstance: {fileID: 7961615787830949188}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -490,3 +485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7111462042719529779 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 922580883242131063, guid: 06efe0985a668eb4b8030d78aa924c0b, type: 3}
+  m_PrefabInstance: {fileID: 7961615787830949188}
+  m_PrefabAsset: {fileID: 0}
