@@ -23,7 +23,7 @@ public class DungeonGenerator : MonoBehaviour
     private float roomChance = 0.7f;
     private List<RoomBounds> roomBoundsList;
     private List<Vector2Int> roomCenters = new();
-
+    [SerializeField] private int growOnFloor;
     private DungeonSettings defaultSettings;
     public TileType[,] dungeonGrid;
 
@@ -71,8 +71,8 @@ public class DungeonGenerator : MonoBehaviour
         // Adjust dimensions
         Vector2Int dungeonSize = DungeonUtility.CalculateDungeonSize(
             defaultSettings.width, defaultSettings.height, roomNumX, roomNumY, dungeonBorder, roomPadding);
-        dungeonSizeX = dungeonSize.x;
-        dungeonSizeY = dungeonSize.y;
+        dungeonSizeX = dungeonSize.x + (TurnManager.Instance.FLoorNumber *growOnFloor);
+        dungeonSizeY = dungeonSize.y + (TurnManager.Instance.FLoorNumber * growOnFloor);
 
         //Fills the area of the dungeon with blank walls 
         dungeonGrid = dungeonGridContainer.CreateDungeonGrid(dungeonSizeX, dungeonSizeY);
