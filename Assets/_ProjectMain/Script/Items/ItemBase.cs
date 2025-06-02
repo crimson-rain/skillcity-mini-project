@@ -5,6 +5,8 @@ public abstract class ItemBase : MonoBehaviour
 
     public  abstract void Consume(Stats stats);
     
+    
+ 
     public virtual Sprite Sprite()
     {
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();

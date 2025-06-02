@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+
+        Debug.Log("Looking for player at start");
         target = GameObject.FindGameObjectWithTag("Player");
         stats = GetComponent<Stats>();
         dungeonContainer = FindFirstObjectByType<DungeonContainer>();
@@ -36,7 +38,13 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator TakeTurn()
     {
-
+        if(gameObject == null) yield return null;
+        if (stats.currentHealth <= 0) yield return null;
+        if(target == null)
+        {
+            Debug.Log("Can't find target");
+            yield return null;
+        }
         Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);
         Vector2Int playerPos = GridUtility.WorldToGridPosition(target.transform.position);
 
@@ -114,18 +122,18 @@ public class Enemy : MonoBehaviour
         Vector2Int playerPos = GridUtility.WorldToGridPosition(target.transform.position);
 
         int distanceToPlayer = PathfindingUtility.GetPathLength(myPos, playerPos);
-        
 
-        if(distanceToPlayer > stats.detectionRange)
+
+        if (distanceToPlayer > stats.detectionRange)
         {
-           HandlePercentages(probabilities, "Move", 100f, isAbsolute: true, locks);
+            HandlePercentages(probabilities, "Move", 100f, isAbsolute: true, locks);
             locks["Move"] = true;
-            //Debug.Log("Not in range");
+
 
             return;
         }//if not in detection just move about
 
-        if(stats.intelligence ==0)
+        if (stats.intelligence == 0)
         {
             HandlePercentages(probabilities, "Attack", 100f, isAbsolute: true, locks);
             locks["Attack"] = true;
@@ -140,29 +148,29 @@ public class Enemy : MonoBehaviour
 
             Vector2Int otherPos = GridUtility.WorldToGridPosition(other.transform.position);
             int dist = PathfindingUtility.GetPathLength(myPos, otherPos);
-            if (dist < stats.allyThreshold) closeAlly ++;
+            if (dist < stats.allyThreshold) closeAlly++;
         }
         if (closeAlly == 0) closeAlly = 1;
-        switch(stats.personality)
+        switch (stats.personality)
         {
             case PersonalityType.Shy:
-            HandlePercentages(probabilities, "Attack", -50/closeAlly, isAbsolute: false, locks);
+            HandlePercentages(probabilities, "Attack", -50 / closeAlly, isAbsolute: false, locks);
             break;
             case PersonalityType.Aggressive:
             HandlePercentages(probabilities, "Attack", 10 * closeAlly, isAbsolute: false, locks);
             break;
         }//emboldens based on personality type and number of close allies
 
-     
+
         if (stats.currentHealth < 5)//retreat if low health
         {
             if (stats.personality == PersonalityType.Shy)
             {
-                HandlePercentages(probabilities, "Retreat", 80 , isAbsolute: false, locks);
+                HandlePercentages(probabilities, "Retreat", 80, isAbsolute: false, locks);
             }
             else
             {
-                HandlePercentages(probabilities, "Retreat", -20 , isAbsolute: false, locks);
+                HandlePercentages(probabilities, "Retreat", -20, isAbsolute: false, locks);
             }
         }
 
@@ -178,12 +186,12 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if(distanceToPlayer == 1)//flat buff if in melee
+        if (distanceToPlayer == 1)//flat buff if in melee
         {
             HandlePercentages(probabilities, "Attack", 50, isAbsolute: false, locks);
         }
 
-        
+
     }
 
 
