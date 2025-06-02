@@ -12,4 +12,5 @@ public class PotionScript : ItemBase
         stats.Heal(effectAmount);
         Debug.Log($"Potion consumed: healed {effectAmount} HP");
     }
+    
 }
