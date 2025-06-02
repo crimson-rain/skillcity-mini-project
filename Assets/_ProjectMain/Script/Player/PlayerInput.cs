@@ -114,7 +114,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (condition(distance, range)) // Uses the provided comparison function
         {
-            TurnManager.Instance.EnqueueAction(action);
+            TurnManager.Instance.EnqueueActionFront(action);
         }
         else
         {
