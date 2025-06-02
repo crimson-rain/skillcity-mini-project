@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 121144342}
   - component: {fileID: 121144341}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Inv 2 Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15255cb9210fcaf4d97a3c9df310c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 121144342}
 --- !u!114 &121144342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15255cb9210fcaf4d97a3c9df310c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 194646978}
 --- !u!114 &194646978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,6 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15255cb9210fcaf4d97a3c9df310c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 864715291}
 --- !u!114 &864715291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,7 +1439,7 @@ GameObject:
   - component: {fileID: 1658352166}
   - component: {fileID: 1658352165}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AbilityIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1473,6 +1476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15255cb9210fcaf4d97a3c9df310c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 1658352166}
 --- !u!114 &1658352166
 MonoBehaviour:
   m_ObjectHideFlags: 0
