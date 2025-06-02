@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour
             int dist = PathfindingUtility.GetPathLength(myPos, otherPos);
             if (dist < stats.allyThreshold) closeAlly ++;
         }
-
+        if (closeAlly == 0) closeAlly = 1;
         switch(stats.personality)
         {
             case PersonalityType.Shy:

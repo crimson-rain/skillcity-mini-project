@@ -13,7 +13,7 @@ public class DungeonSplitter
         this.border = border;
     }
 
-    public List<RoomBounds> Split(TileType[,] grid)
+    public List<RoomBounds> Split(TileType[,] grid)//Takes the grid, gets the length 
     {
         int width = grid.GetLength(0);
         int height = grid.GetLength(1);

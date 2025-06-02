@@ -18,7 +18,7 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] private int dungeonBorder = 1;
     [Range(0, 1)] public float straightCorridorChance = 0.5f;
     public bool regenerateOnFlag;
-    DungeonContainer dungeonGridContainer; 
+    DungeonContainer dungeonGridContainer;
     private GameObject dungeonContainer;
     private float roomChance = 0.7f;
     private List<RoomBounds> roomBoundsList;
@@ -40,6 +40,7 @@ public class DungeonGenerator : MonoBehaviour
 
     private void Update()
     {
+        //Debug optin to make a new dungeon in the 
         if (regenerateOnFlag)
         {
             GenerateDungeon();
@@ -49,14 +50,21 @@ public class DungeonGenerator : MonoBehaviour
 
     public void GenerateDungeon()
     {
+
+        //Reset the items and enemies, avoiding all 
         ResetEntities();
+
+        //Clears the lists containing the centre point of each rooom 
         roomCenters.Clear();
-        roomBoundsList = new();
+        //CLears the list containing the 4 corner points of each rooom 
+        roomBoundsList.Clear();
 
         // Clean old dungeon
         if (dungeonContainer != null)
             Destroy(dungeonContainer);
 
+
+        //Create new dungeon container what all the tiles will be stored in
         dungeonContainer = new GameObject("DungeonContainer");
         dungeonContainer.transform.parent = this.transform;
 
@@ -66,46 +74,47 @@ public class DungeonGenerator : MonoBehaviour
         dungeonSizeX = dungeonSize.x;
         dungeonSizeY = dungeonSize.y;
 
+        //Fills the area of the dungeon with blank walls 
         dungeonGrid = dungeonGridContainer.CreateDungeonGrid(dungeonSizeX, dungeonSizeY);
         DungeonUtility.FillWithWalls(dungeonGrid);
 
-
+        //Decides how many of the rooms should be spawned
         DecideDungeonType();
 
-        // Room splitting
+        // Room splitting - splits the room up into smaller sections
         var splitter = new DungeonSplitter(roomNumX, roomNumY, dungeonBorder);
         roomBoundsList = splitter.Split(dungeonGrid);
 
-        // Room placement
+        // Room placement - places rooms in those sections
         var roomGen = new DungeonRoomGenerator(minRoomX, minRoomY, roomPadding);
         foreach (var room in roomBoundsList)
         {
             if (Random.value <= roomChance)
             {
-                dungeonGrid = roomGen.GenerateRoom(dungeonGrid, room, roomCenters,dungeonGridContainer);
+                dungeonGrid = roomGen.GenerateRoom(dungeonGrid, room, roomCenters, dungeonGridContainer);
             }
         }
 
-        // Connect rooms
+        // Connect rooms - uses the centre points and draws a line 
         var connector = new DungeonConnector(straightCorridorChance, dungeonSizeX, dungeonSizeY);
-        dungeonGrid = connector.ConnectRooms(dungeonGrid, roomCenters,dungeonGridContainer);
+        dungeonGrid = connector.ConnectRooms(dungeonGrid, roomCenters, dungeonGridContainer);
 
 
         dungeonGridContainer.dungeon = dungeonGrid;
 
-    
-        DungeonUtility.SpawnTiles(dungeonGrid, floor, wall, dungeonContainer.transform,dungeonGridContainer);
+        //Uses the array generated to spawn the tile objects   
+        DungeonUtility.SpawnTiles(dungeonGrid, floor, wall, dungeonContainer.transform, dungeonGridContainer);
 
 
 
- 
+        //Places player in random spots
         int rand = Random.Range(0, dungeonGridContainer.floorTiles.Count);
         int spawnPosX = dungeonGridContainer.floorTiles[rand].x;
         int spawnPosY = dungeonGridContainer.floorTiles[rand].y;
-        GameObject playerSpawn = dungeonGridContainer.dungeonObjects[spawnPosX,spawnPosY];
+        GameObject playerSpawn = dungeonGridContainer.dungeonObjects[spawnPosX, spawnPosY];
         player.transform.position = playerSpawn.transform.position;
 
-
+        //passes grid position to player to allow movement
         var playerController = player.GetComponent<PlayerController>();
         if (playerController != null)
         {
@@ -113,12 +122,12 @@ public class DungeonGenerator : MonoBehaviour
             playerController.dungeonGridContainer = dungeonGridContainer; // Optional, if needed
         }
 
-
+        //passes generated gris to the spawners
         itemSpawner.dungeonContainer = dungeonGridContainer;
         enemySpawner.dungeonContainer = dungeonGridContainer;
         trapSpawner.dungeonContainer = dungeonGridContainer;
 
-
+        //spawns an initial batch of enemies bas
         stairsSpawner.BatchSpawn(1);
         itemSpawner.BatchSpawn(5);
         enemySpawner.BatchSpawn(5);
@@ -127,33 +136,45 @@ public class DungeonGenerator : MonoBehaviour
 
     private void DecideDungeonType()
     {
+        //Gets random tule type
         var type = DungeonTypeUtility.GetRandom();
         switch (type)
         {
             case DungeonType.SingleRoom:
+
+            //sets the room to be 90% of the whole dungeon
             minRoomX = Mathf.CeilToInt(defaultSettings.width * 0.9f);
             minRoomY = Mathf.CeilToInt(defaultSettings.height * 0.9f);
+            //makes it so only 1 room can spawn
             roomNumX = roomNumY = 1;
+
+            // makes it guarenteed for a room to spawn
             roomChance = 1.1f;
             break;
             case DungeonType.fullRoom:
+            //sets to default settings
             ResetToDefaultSettings();
+            // makes it guarenteed for a room to spawn
             roomChance = 1f;
             break;
             case DungeonType.halfRoom:
+            //sets to default settings
             ResetToDefaultSettings();
+            // makes it a 50% chance for a room to spawn so only half the rooms will spawn
             roomChance = 0.5f;
             break;
             case DungeonType.threeQuartRoom:
+            //sets to default settings
             ResetToDefaultSettings();
+            //makes it a 75% chance for a room to spawn
             roomChance = 0.75f;
             break;
         }
 
-        
-    }
 
-    private void ResetToDefaultSettings()
+    }//Decides on which dungeoh type the dungeon should be
+
+    private void ResetToDefaultSettings() // sets the room numbers and room sizes to whatever was set in inspector to undo single rooms
     {
         minRoomX = defaultSettings.minRoomX;
         minRoomY = defaultSettings.minRoomY;
@@ -163,22 +184,25 @@ public class DungeonGenerator : MonoBehaviour
 
     private void ResetEntities()
     {
+        //Gets the player inventory
         Inventory inv = GetComponent<Inventory>();
         ItemBase[] ib = FindObjectsByType<ItemBase>(FindObjectsSortMode.None);
-        foreach(ItemBase item in ib)
+        foreach (ItemBase item in ib)
         {
+            //Destroys item is it isn't in the players inventory (will be disabled if it is)
             if (item.isActiveAndEnabled) Destroy(item.gameObject);
 
         }
 
+        //Destroys every enemy on the field
         Enemy[] enemy = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        foreach(Enemy item in enemy )
+        foreach (Enemy item in enemy)
         {
-            
+
             Destroy(item.gameObject);
         }
 
 
 
-    }
+    }//Destroys all enemies and items in preperation for respawning the dungeon. Leaves items in inventory 
 }
