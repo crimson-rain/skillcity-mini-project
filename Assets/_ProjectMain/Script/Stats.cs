@@ -103,8 +103,11 @@ public class Stats : MonoBehaviour
         }
         else
         {
+            //Get player stats
             Stats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>();
+            //Add experience to player 
             playerStats.AddXP(xpOnDeath);
+            
             Destroy(gameObject);
         }
 
@@ -182,7 +185,7 @@ public class Stats : MonoBehaviour
         if (Percent > 1) Percent = 1;
         if (energyBar != null)
         {
-            Debug.Log("Energy: "+ energy + " max: " + maxEnergy + " percent: " + Percent);
+            //Debug.Log("Energy: "+ energy + " max: " + maxEnergy + " percent: " + Percent);
             energyBar.fillAmount = Percent;
         }
 

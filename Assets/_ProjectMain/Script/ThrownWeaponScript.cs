@@ -18,7 +18,11 @@ public class ThrownWeaponScript : MonoBehaviour
     }
     private IEnumerator TravelAndCheck()
     {
-       
+
+
+        enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);//Recalcuate position after a hit to avoid atempted references
+
+
         Vector2Int dir = new Vector2Int(
             Mathf.Clamp(Mathf.RoundToInt(Direction.x), -1, 1),
             Mathf.Clamp(Mathf.RoundToInt(Direction.y), -1, 1)
@@ -44,7 +48,7 @@ public class ThrownWeaponScript : MonoBehaviour
                     Stats stats = e.GetComponent<Stats>();
                     if (stats != null)
                         stats.TakeDamage(weaponStats.damage);
-                    enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);//Recalcuate position after a hit to avoid atempted references
+                   
 
 
                     //Destroy(gameObject);

@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+
+        Debug.Log("Looking for player at start");
         target = GameObject.FindGameObjectWithTag("Player");
         stats = GetComponent<Stats>();
         dungeonContainer = FindFirstObjectByType<DungeonContainer>();
@@ -36,7 +38,13 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator TakeTurn()
     {
-
+        if(gameObject == null) yield return null;
+        if (stats.currentHealth <= 0) yield return null;
+        if(target == null)
+        {
+            Debug.Log("Can't find target");
+            yield return null;
+        }
         Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);
         Vector2Int playerPos = GridUtility.WorldToGridPosition(target.transform.position);
 
@@ -120,7 +128,7 @@ public class Enemy : MonoBehaviour
         {
            HandlePercentages(probabilities, "Move", 100f, isAbsolute: true, locks);
             locks["Move"] = true;
-            //Debug.Log("Not in range");
+            
 
             return;
         }//if not in detection just move about
