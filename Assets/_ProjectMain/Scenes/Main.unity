@@ -754,7 +754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 155, y: 153}
+  m_AnchoredPosition: {x: 791, y: 53}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177157223
@@ -1032,6 +1032,8 @@ MonoBehaviour:
   healthBar: {fileID: 1046310873205346929}
   energyBar: {fileID: 1238288117}
   levelText: {fileID: 1716022148}
+  actionsPerTurn: 0
+  actionsTaken: 0
 --- !u!114 &1357860410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,7 +1649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 106, y: 25}
+  m_AnchoredPosition: {x: 431, y: 25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1781803208
