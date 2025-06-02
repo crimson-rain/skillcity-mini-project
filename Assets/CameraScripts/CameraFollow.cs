@@ -61,7 +61,6 @@ public class CameraFollow : MonoBehaviour {
 	void LateUpdate () {
 
 		ScrollHeight (heightMin,heightMax);
-		//RotateCameraAround();
 
         CamFollow ();
 	}
@@ -176,6 +175,11 @@ public class CameraFollow : MonoBehaviour {
 			newOffset = offsetMin;	
 
 		offset = newOffset;
+	}
+
+	private void MoveCameraToInitialPossition()
+	{
+
 	}
 
 		
