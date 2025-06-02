@@ -20,7 +20,7 @@ public class Fog : MonoBehaviour
             var tilePos = GridUtility.WorldToGridPosition(game.transform.position);
             var range = PathfindingUtility.GetPathLength(playerPos, tilePos);
             if (range <= detectionrange) game.SetActive(true);
-
+            if(playerPos == tilePos)game.SetActive(true);
 
         }
 
