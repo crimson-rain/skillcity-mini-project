@@ -2,6 +2,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using System;
 using TMPro;
+
 public class PlayerInput : MonoBehaviour
 {
     private Camera cam;
@@ -9,6 +10,8 @@ public class PlayerInput : MonoBehaviour
     public LayerMask floorLayerMask;
     public TMP_Text text;
     int ability;
+  
+    
     private void Start()
     {
 
@@ -106,6 +109,8 @@ public class PlayerInput : MonoBehaviour
             abilityName = "Throw Weapon";
             break;
         }
+
+        
 
         text.text = ("Current Ability: " + abilityName);
     }
