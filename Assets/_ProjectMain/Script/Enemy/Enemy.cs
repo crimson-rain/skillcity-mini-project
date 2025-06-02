@@ -36,7 +36,16 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator TakeTurn()
     {
-
+        if(gameObject == null)
+        {
+            Debug.Log("Null reference to seld");
+            yield return null;  
+        }
+        if(target == null)
+        {
+            Debug.Log("Null reference to target");
+            yield return null;
+        }
         Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);
         Vector2Int playerPos = GridUtility.WorldToGridPosition(target.transform.position);
 
@@ -442,7 +451,12 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator RandomMoveStep()
     {
-        // 1) Get my current grid pos
+        if (gameObject == null)
+        {
+            Debug.Log("Null reference to self");
+            yield return null;
+        }
+        
         Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);
 
         // 2) Build a list of all 8 neighbors
