@@ -61,7 +61,7 @@ public class CameraFollow : MonoBehaviour {
 	void LateUpdate () {
 
 		ScrollHeight (heightMin,heightMax);
-		RotateCameraAround();
+		//RotateCameraAround();
 
         CamFollow ();
 	}
@@ -178,34 +178,5 @@ public class CameraFollow : MonoBehaviour {
 		offset = newOffset;
 	}
 
-	private void RotateCameraAround()
-	{
-        if (Input.GetMouseButton(2))
-        {
-			//Vector3 offset = new Vector3(0f,0f,0f);
-			Vector3 camPos = transform.position;
-
-            float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
-
-			//float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
-			camPos.x += mouseX;
-			
-			transform.position = camPos;
-
-
-            // Rotate the offset around the player
-            //offset = Quaternion.AngleAxis(mouseX, Vector3.up) * offset; // Horizontal rotation
-           // offset = Quaternion.AngleAxis(-mouseY, transform.right) * offset; // Vertical rotation
-
-            // Update camera position
-            //transform.position = target.position + offset;
-			//Debug.Log("offset is " + offset);
-
-            // Make the camera look at the player
-            transform.LookAt(target.position);
-
-           
-		}
-	}
 		
 }
