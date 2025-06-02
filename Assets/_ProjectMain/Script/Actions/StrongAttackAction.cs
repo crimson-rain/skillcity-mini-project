@@ -11,4 +11,10 @@ public class StrongAttackAction : AttackAction
         this.damageMultiplier = strongMultiplier;
         this.energyCost = newEnergyCost;
     }
+
+    //public override IEnumerator Execute()
+    //{
+        
+    //}
+
 }

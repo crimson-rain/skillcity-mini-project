@@ -15,10 +15,12 @@ public class TurnManager : MonoBehaviour
     private bool processing = false;
     public GameObject dungeonGeneration;
     public int FLoorNumber = 0;
-    
+    GameObject player;
     // Singleton Creation
     private void Awake()
     {
+
+        player = GameObject.FindGameObjectWithTag("Player");
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -66,6 +68,11 @@ public class TurnManager : MonoBehaviour
     // Process enemy turn
     public IEnumerator EnemyTurn()
     {
+       Stats playerStats = player.GetComponent<Stats>();
+
+        if (playerStats.actionsTaken < playerStats.actionsPerTurn) yield return playerStats.actionsTaken++;
+
+        playerStats.actionsTaken = 0;
         // Update spawners
         EnemySpawner[] es = dungeonGeneration.GetComponents<EnemySpawner>();
 

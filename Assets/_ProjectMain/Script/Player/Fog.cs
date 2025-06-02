@@ -12,6 +12,7 @@ public class Fog : MonoBehaviour
     public void ExposeTiles()
     {
         var playerPos = GridUtility.WorldToGridPosition(transform.position);
+        if(dungeonContainer == null) dungeonContainer = FindAnyObjectByType<DungeonContainer>();
         GameObject[,] Tiles = dungeonContainer.dungeonObjects;
 
         foreach(GameObject game in Tiles)

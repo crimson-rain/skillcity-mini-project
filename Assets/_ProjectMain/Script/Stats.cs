@@ -47,6 +47,10 @@ public class Stats : MonoBehaviour
     public Image healthBar;
     public Image energyBar;
     public TMP_Text levelText;
+
+    public int actionsPerTurn;
+    public int actionsTaken;
+    
     public Stats(int level = 0, int energy = 0, int maxHealth = 0, PersonalityType personality = PersonalityType.None, int damage = 0, int detectionRange = 0)
     {
         this.level = level;
@@ -103,8 +107,11 @@ public class Stats : MonoBehaviour
         }
         else
         {
+            //Get player stats
             Stats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>();
+            //Add experience to player 
             playerStats.AddXP(xpOnDeath);
+            
             Destroy(gameObject);
         }
 
@@ -182,7 +189,7 @@ public class Stats : MonoBehaviour
         if (Percent > 1) Percent = 1;
         if (energyBar != null)
         {
-            Debug.Log("Energy: "+ energy + " max: " + maxEnergy + " percent: " + Percent);
+            //Debug.Log("Energy: "+ energy + " max: " + maxEnergy + " percent: " + Percent);
             energyBar.fillAmount = Percent;
         }
 
