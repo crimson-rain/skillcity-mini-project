@@ -57,7 +57,7 @@ public class DungeonGenerator : MonoBehaviour
         //Clears the lists containing the centre point of each rooom 
         roomCenters.Clear();
         //CLears the list containing the 4 corner points of each rooom 
-        roomBoundsList.Clear();
+        roomBoundsList = new();
 
         // Clean old dungeon
         if (dungeonContainer != null)
