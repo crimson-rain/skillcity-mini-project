@@ -124,7 +124,9 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
 
     public void OnZoom(InputAction.CallbackContext context)
     {
+
         ZoomDelta = context.ReadValue<Vector2>();
+        Debug.Log("Zoom Delta: " + ZoomDelta);
     }
 
     public void OnToggleCamera(InputAction.CallbackContext context)

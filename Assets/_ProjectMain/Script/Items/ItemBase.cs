@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class ItemBase :MonoBehaviour
+public abstract class ItemBase : MonoBehaviour
 {
 
     public  abstract void Consume(Stats stats);
@@ -13,7 +13,5 @@ public abstract class ItemBase :MonoBehaviour
 
         Debug.LogWarning($"No SpriteRenderer found in {name} or its children.");
         return null;
-
-
     }
 }

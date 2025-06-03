@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
    public GameObject[] inventory = new GameObject[3];
     public bool debug;
     public int inventorycount;
-    public TMP_Text[] inventoryText = new TMP_Text[3];
+    public Image[] inventoryImage = new Image[3];
     public bool pickup(GameObject item, GameObject itemObject)
     {
         if(item.CompareTag("Trap") || item.CompareTag("Stairs"))
@@ -75,13 +75,15 @@ public class Inventory : MonoBehaviour
     }
     public void DisplayInventory(int index)
     {
+        SpriteHandler image =inventoryImage[index].GetComponent<SpriteHandler>();
+
         if( inventory[index] != null)
         {
-            inventoryText[index].text = inventory[index].name;
+           image.SetSprite(inventory[index].GetComponent<ItemBase>().Sprite());
         }
         else
         {
-            inventoryText[index].text = "";
+            image.SetSprite(null);
         }
           
     }
