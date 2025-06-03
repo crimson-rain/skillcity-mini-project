@@ -64,7 +64,7 @@ public class Fog : MonoBehaviour
             // Defensive bounds check
             if (gridPos.x < 0 || gridPos.y < 0 ||
                 gridPos.x >= Tiles.GetLength(0) || gridPos.y >= Tiles.GetLength(1)) continue;
-            bool tileIsVisible = Tiles[gridPos.x, gridPos.y].activeSelf;
+            bool tileIsVisible = Tiles[gridPos.x, gridPos.y].transform.Find("Sprite").gameObject.activeSelf; 
             SpriteRenderer[] sr = go.GetComponentsInChildren<SpriteRenderer>();
             if (sr.Length > 0)
             {
