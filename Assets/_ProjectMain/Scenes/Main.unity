@@ -543,6 +543,7 @@ MonoBehaviour:
   itemSpawner: {fileID: 481434387}
   trapSpawner: {fileID: 481434388}
   stairsSpawner: {fileID: 481434389}
+  growOnFloor: 3
 --- !u!4 &481434384
 Transform:
   m_ObjectHideFlags: 0
