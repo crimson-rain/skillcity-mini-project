@@ -114,6 +114,7 @@ public class Enemy : MonoBehaviour
 
     private void DecidePlan()//decides high level gameplan
     {
+        closeAlly = 0;
         if (target == null) return;
 
         Stats playerStats = target.GetComponent<Stats>();
@@ -265,58 +266,7 @@ public class Enemy : MonoBehaviour
 
 
 
-    //public void handlePercentage(string type, float amount, int mult, bool lockProb)
-    //{
-    //    switch(type)
-    //    {
-    //        case "Move":
-    //        if (moveLock) return;
-    //        break;
-    //        case "Attack":
-    //        if (attackLock) return;
-    //        break;
-    //        case "Retreat":
-    //        if (retreatLock) return;
-    //        break;
-    //    }
-    //    if (probabilities[type] + amount < 0 || probabilities[type] + amount > 100) amount = probabilities[type];
-       
-
-    //    probabilities[type] += amount;
-    //    if(lockProb)
-    //    {
-    //        switch (type)
-    //        {
-    //            case "Move":
-    //            moveLock = true;
-    //            break;
-    //            case "Attack":
-    //            attackLock = true;
-    //            break;
-    //            case "Retreat":
-    //            retreatLock = true;
-    //            break;
-    //        }
-
-    //        lockNumber++;
-
-    //    }
-
-    //    float remainingCatagories = probabilities.Count - lockNumber;
-
-    //    float toAllocate = amount/remainingCatagories;
-
-    //    foreach(KeyValuePair<string, float> kvp in probabilities)
-    //    {
-    //        if (type == kvp.Key) continue;
-    //        if (CheckLock(kvp.Key)) continue;
-    //        probabilities[kvp.Key] += (toAllocate * mult *-1);
-
-    //    }
-
-        
-
-    //}
+   
 
     public static void HandlePercentages(
     Dictionary<string, float> probs,
