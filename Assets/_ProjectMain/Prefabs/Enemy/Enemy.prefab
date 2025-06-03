@@ -405,6 +405,10 @@ MonoBehaviour:
   multiplyXP: 0
   currentAction: 
   healthBar: {fileID: 5802164498302744731}
+  energyBar: {fileID: 0}
+  levelText: {fileID: 0}
+  actionsPerTurn: 0
+  actionsTaken: 0
 --- !u!114 &5018455087943040667
 MonoBehaviour:
   m_ObjectHideFlags: 0
