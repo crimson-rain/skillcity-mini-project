@@ -1126,7 +1126,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1357860401}
   m_LocalEulerAnglesHint: {x: 45, y: -45, z: 0}
 --- !u!114 &1467323362
 MonoBehaviour:
@@ -1190,7 +1190,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.8}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1458,7 +1458,10 @@ PrefabInstance:
       objectReference: {fileID: 481434385}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 721567574693759763, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1467323361}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4619996578354712834, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       insertIndex: -1
@@ -2548,7 +2551,6 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 481434384}
   - {fileID: 1281553778}
-  - {fileID: 1467323361}
   - {fileID: 1521622666}
   - {fileID: 4373187515579335129}
   - {fileID: 2118585537}

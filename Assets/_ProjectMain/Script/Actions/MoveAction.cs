@@ -13,11 +13,16 @@ public class MoveAction : GameAction
         destination = dest;
     }
 
-  
+
 
     public override IEnumerator Execute()
     {
-        
+        // Check if the player reference is still valid
+        if (player == null)
+        {
+            yield break;
+        }
+
         var path = PathfindingUtility.GetPath(player.GridPosition, destination);
 
         foreach (var step in path)
@@ -28,13 +33,25 @@ public class MoveAction : GameAction
                 break;
             }
 
-            Fog fog = player.GetComponent<Fog>();
-            fog.ExposeTiles();
-            // Player moves exactly one tile
-            yield return player.StepTo(step);
+            if (player == null) yield break; // Check again before accessing components
 
-            // Then all enemies take exactly one tile-step
-            yield return TurnManager.Instance.EnemyTurn();
+            Fog fog = player.GetComponent<Fog>();
+            if (fog != null)
+            {
+                fog.ExposeTiles();
+            }
+
+            yield return player.StepTo(step); // StepTo must also handle null internally
+
+            // Check if TurnManager and player are still valid
+            if (TurnManager.Instance != null && player != null)
+            {
+                yield return TurnManager.Instance.EnemyTurn();
+            }
+            else
+            {
+                yield break;
+            }
         }
     }
 
