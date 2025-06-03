@@ -55,6 +55,7 @@ public class TurnManager : MonoBehaviour
     // Process `GameAction` in the queue by dequeuing and then executing them
     private IEnumerator ProcessGameActionQueue()
     {
+        if (this == null || gameObject == null) yield break;
         processing = true;
         
         while (actionQueue.Count > 0)
@@ -68,7 +69,10 @@ public class TurnManager : MonoBehaviour
     // Process enemy turn
     public IEnumerator EnemyTurn()
     {
-        if (player == null) yield break;
+        if (this == null || gameObject == null) yield break;
+
+        if(player == null) player = GameObject.FindGameObjectWithTag("Player"); 
+
 
         Stats playerStats = player.GetComponent<Stats>();
 
@@ -76,26 +80,40 @@ public class TurnManager : MonoBehaviour
 
         playerStats.actionsTaken = 0;
 
-        // Update spawners
-        EnemySpawner[] es = dungeonGeneration.GetComponents<EnemySpawner>();
+        if (dungeonGeneration == null) dungeonGeneration = GameObject.Find("Dungeon Generator");
 
-        foreach(var enemy in es)
+        EnemySpawner[] spawners = dungeonGeneration.GetComponents<EnemySpawner>();
+        foreach (var spawner in spawners)
         {
-            if (enemy != null) enemy.IncreaseTurnCounter(); 
+            spawner.IncreaseTurnCounter();
         }
-         
-        // Process indvidual enemy action
+
+        // Get all enemies
         Enemy[] enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
 
-        foreach (var e in enemies)
+        int completedCount = 0;
+
+        // Start each enemy's turn in parallel
+        foreach (var enemy in enemies)
         {
-            if (e == null) continue; 
-            yield return e.TakeTurn();
+            if (enemy == null) continue;
+            StartCoroutine(EnemyTurnWrapper(enemy, () => completedCount++));
+        }
+
+        // Wait for all to complete
+        while (completedCount < enemies.Length)
+        {
+            yield return null;
         }
     }
 
     public void HaltTurnManager()
     {
         StopAllCoroutines();
+    }
+    private IEnumerator EnemyTurnWrapper(Enemy enemy, System.Action onComplete)
+    {
+        yield return enemy.TakeTurn();
+        onComplete?.Invoke();
     }
 }
