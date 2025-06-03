@@ -253,7 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04696fc3a89f0874399620ffd63f3ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepDuration: 0.1
+  GridPosition: {x: 0, y: 0}
+  dungeonGridContainer: {fileID: 0}
 --- !u!114 &3977523040094323335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,3 +267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2b3815caca1434f9175e20d8eba6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  sprite: {fileID: 0}
+  abilitySprites:
+    _serializedList: []

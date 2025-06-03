@@ -243,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 3660939040419934408}
   serializedVersion: 2
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.14644662, w: 0.8535534}
-  m_LocalPosition: {x: 0.144, y: 0.451, z: -0.205}
+  m_LocalPosition: {x: 0.144, y: 0.46, z: -0.205}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2003603928, guid: ccc664b63c9e09044b0f9f9281aeb611, type: 3}
+  m_Sprite: {fileID: -937457177, guid: f3b61d0e8500f3d4aaf11c75a8974c9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 4537583953945621497}
   - component: {fileID: 5018455087943040667}
   m_Layer: 0
-  m_Name: Zombie
+  m_Name: Zombie 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
