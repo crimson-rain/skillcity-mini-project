@@ -57,8 +57,6 @@ public class FreeCam : MonoBehaviour
             // Handle zoom with scroll wheel
             this.scroll = inputHandler.ZoomDelta.y; //Input.GetAxis("Mouse ScrollWheel");
 
-            Debug.Log(" [TRUE] Scroll Delta: " + this.scroll);
-
             camDistance = offset.magnitude;
             camDistance = Mathf.Clamp(camDistance - this.scroll * zoomSpeed, camMinDist, camMaxDist);
             offset = offset.normalized * camDistance;
@@ -84,8 +82,6 @@ public class FreeCam : MonoBehaviour
 
             // Handle zoom with scroll wheel
             this.scroll = inputHandler.ZoomDelta.y; //Input.GetAxis("Mouse ScrollWheel");
-
-            Debug.Log("[FALSE] Scroll Delta: " + this.scroll);
 
             camDistance = offset.magnitude;
             camDistance = Mathf.Clamp(camDistance - this.scroll * zoomSpeed, camMinDist, camMaxDist);

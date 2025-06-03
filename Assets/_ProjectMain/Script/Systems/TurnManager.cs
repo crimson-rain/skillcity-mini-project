@@ -68,7 +68,7 @@ public class TurnManager : MonoBehaviour
     // Process enemy turn
     public IEnumerator EnemyTurn()
     {
-       Stats playerStats = player.GetComponent<Stats>();
+        Stats playerStats = player.GetComponent<Stats>();
 
         if (playerStats.actionsTaken < playerStats.actionsPerTurn) yield return playerStats.actionsTaken++;
 
