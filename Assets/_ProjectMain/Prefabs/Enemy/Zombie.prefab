@@ -243,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 3660939040419934408}
   serializedVersion: 2
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.14644662, w: 0.8535534}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0.186, y: 0.39, z: -0.013}
   m_LocalScale: {x: 4, y: 4, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 81085102, guid: 221b2df392eecee4ba3d65804808b7cb, type: 3}
+  m_Sprite: {fileID: 377969031, guid: 25cc1d564a78d7b4cbd3ef0e858a0526, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 4537583953945621497}
   - component: {fileID: 5018455087943040667}
   m_Layer: 0
-  m_Name: Enemy Shy
+  m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd84bb92acd66342bdd5a90e41f80ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personality: 2
+  personality: 1
   level: 0
   energy: 0
   currentHealth: 7
@@ -397,7 +397,7 @@ MonoBehaviour:
   attackRange: 1
   detectionRange: 12
   allyThreshold: 2
-  intelligence: 5
+  intelligence: 0
   xp: 0
   xpToNextLevel: 0
   xpIncrease: 0
@@ -405,6 +405,8 @@ MonoBehaviour:
   multiplyXP: 0
   currentAction: 
   healthBar: {fileID: 7852402252169517646}
+  energyBar: {fileID: 0}
+  levelText: {fileID: 0}
 --- !u!114 &5018455087943040667
 MonoBehaviour:
   m_ObjectHideFlags: 0

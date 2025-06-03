@@ -585,9 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toSpawn:
-  - {fileID: 5807635887264416732, guid: 4cf9548419e7eeb4fa884ceea25d3619, type: 3}
-  - {fileID: 5807635887264416732, guid: 543763bef1ef55c45a22dad4e0bf2290, type: 3}
-  - {fileID: 5807635887264416732, guid: 9eb854b1d7fe4ca4bb2c96c02aa4dda4, type: 3}
+  - {fileID: 5807635887264416732, guid: fd081f110aa096c4c9034d17d055c443, type: 3}
   player: {fileID: 1357860398}
   debug: 0
   turnsToSpawn: 10
