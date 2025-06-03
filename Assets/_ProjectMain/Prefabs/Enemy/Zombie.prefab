@@ -171,8 +171,8 @@ MonoBehaviour:
   personality: 1
   level: 0
   energy: 0
-  currentHealth: 7
-  maxHealth: 7
+  currentHealth: 20
+  maxHealth: 20
   armour: 0
   maxArmour: 0
   damage: 3
