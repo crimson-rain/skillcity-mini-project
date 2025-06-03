@@ -76,8 +76,7 @@ public class TurnManager : MonoBehaviour
 
         Stats playerStats = player.GetComponent<Stats>();
 
-        if (playerStats.actionsTaken < playerStats.actionsPerTurn)
-            playerStats.actionsTaken++;
+        if (playerStats.actionsTaken < playerStats.actionsPerTurn) yield return playerStats.actionsTaken++;
 
         playerStats.actionsTaken = 0;
 

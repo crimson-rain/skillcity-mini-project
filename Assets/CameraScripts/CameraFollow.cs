@@ -28,8 +28,12 @@ public class CameraFollow : MonoBehaviour {
 	private float offsetMax;						// maximum distance of offset
 	[SerializeField]
 	private float damping;                          // how fast camera travels to its destination
-	[SerializeField] 
-	private float rotationSpeed;
+
+	[SerializeField]
+	private float transitionDuration;               // how quickly the camera moves to initial position when toggling between cameras
+
+
+    private bool isInitialized;
 
     [SerializeField] float playerToscreenEdgeLimit;		//how close to the screen the player can be
 	[SerializeField] LayerMask maskFloorLayer;			// mask 
@@ -51,22 +55,65 @@ public class CameraFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
-		transform.position = target.position;
+		
+		isInitialized = false;
 		Quaternion rot = Quaternion.Euler (new Vector3 (angleX, angleY, angleZ)); // store te angle we want the camera to be in a quaternion
 		transform.rotation = rot; //apply the rotation
 		playerToMouse = target.GetComponent<PlayerToMouse> (); //get componenet from the target which stores cursor info 
+		
 
-	}
+		
+
+
+    }
 	// Update is called once per frame
 	void LateUpdate () {
 
 		ScrollHeight (heightMin,heightMax);
-		//RotateCameraAround();
 
-        CamFollow ();
+		if (isInitialized)
+		{
+
+			CamFollow();
+
+		}
 	}
 
-	private void CamFollow()
+    private void OnEnable()
+    {
+        StartCoroutine(SmoothTransitionToFollow());
+    }
+
+
+    public IEnumerator SmoothTransitionToFollow()
+    {
+		isInitialized = false;
+
+        float transitionDuration = 0.5f; // Transition time in seconds
+        float elapsedTime = 0f;
+        Vector3 startPosition = transform.position;
+        Quaternion startRotation = transform.rotation;
+
+        Vector3 iniCamPos = target.position;
+        iniCamPos.y = heightMax;
+
+		Vector3 targetPosition = iniCamPos;
+
+        Vector3 iniCamAngle = new Vector3(angleX, angleY, angleZ);
+        Quaternion targetRotation = Quaternion.Euler(iniCamAngle);
+
+        while (elapsedTime <= transitionDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / transitionDuration;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            yield return null;
+        }
+
+		isInitialized = true;
+    }
+    private void CamFollow()
 	{
 		Vector3 cursorWorldPos = playerToMouse.mouseInWorldPos;	
 		centre = new Vector3 ((target.position.x + cursorWorldPos.x) / 2.0f, 0f, (cursorWorldPos.z + target.position.z) / 2.0f); // calculate centre between player and mouse
@@ -176,6 +223,11 @@ public class CameraFollow : MonoBehaviour {
 			newOffset = offsetMin;	
 
 		offset = newOffset;
+	}
+
+	private void MoveCameraToInitialPossition()
+	{
+
 	}
 
 		
