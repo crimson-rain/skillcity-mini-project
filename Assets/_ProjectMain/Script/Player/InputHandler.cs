@@ -11,9 +11,12 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
     public event Action<int > AbilitySwitchEvent;
     public event Action<int> ItemSwitchEvent;
 
+
     public Vector2 MouseVector { get; private set; }
     public Vector2 ZoomDelta { get; private set; }
     public bool isLook { get; private set; }
+
+    public event Action ToggleCameraEvent;
 
     private Controls controls;
 
@@ -22,6 +25,7 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
         controls = new Controls();
         controls.Player.SetCallbacks(this);
         controls.Player.Enable();
+
     }
 
     private void OnDestroy()
@@ -123,5 +127,11 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
 
         ZoomDelta = context.ReadValue<Vector2>();
         Debug.Log("Zoom Delta: " + ZoomDelta);
+    }
+
+    public void OnToggleCamera(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        ToggleCameraEvent?.Invoke();
     }
 }
