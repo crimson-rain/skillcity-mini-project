@@ -8,12 +8,12 @@ public class TransitionScreen : MonoBehaviour
     [Header("UI")]
     public CanvasGroup canvasGroup;
     public float fadeSpeed = 2f;       // Speed of fade in/out
-    public float holdDuration = 0.5f;  // Time to stay fully black
+    public float holdDuration = 0.5f;  // Black screen length
 
     private void Awake()
     {
         if (canvasGroup != null)
-            canvasGroup.alpha = 0f; // Start fully transparent
+            canvasGroup.alpha = 0f; 
     }
 
     private void Start()
@@ -27,7 +27,7 @@ public class TransitionScreen : MonoBehaviour
         StartCoroutine(FadeAndLoadScene(sceneName));
     }
 
-    // Only fade in and out — no scene loading (e.g. at start)
+    
     public void FadeInOnly()
     {
         StartCoroutine(FadeOnlyIn());
@@ -46,18 +46,17 @@ public class TransitionScreen : MonoBehaviour
         // Hold black screen briefly
         yield return new WaitForSeconds(holdDuration);
 
-        // Load scene asynchronously
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
 
-        // (Optional) Fade back out after load — only works if this object is DontDestroyOnLoad
-        // StartCoroutine(FadeOut());
+       
     }
 
-    // Fade in and then fade out (no scene change)
+    // Fade in and then fade out
     private IEnumerator FadeOnlyIn()
     {
         // Fade to black
@@ -67,10 +66,10 @@ public class TransitionScreen : MonoBehaviour
             yield return null;
         }
 
-        // Hold black screen briefly
+        // black screen
         yield return new WaitForSeconds(holdDuration);
 
-        // Fade back to transparent
+   
         while (canvasGroup.alpha > 0f)
         {
             canvasGroup.alpha -= Time.deltaTime * fadeSpeed;
@@ -78,7 +77,7 @@ public class TransitionScreen : MonoBehaviour
         }
     }
 
-    // (Optional) You can call this if you ever want to fade out manually
+    // fadeout manually
     public IEnumerator FadeOut()
     {
         while (canvasGroup.alpha > 0f)
