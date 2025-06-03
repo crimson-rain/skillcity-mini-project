@@ -24,7 +24,7 @@ public class Fog : MonoBehaviour
             if (range <= detectionrange || playerPos == tilePos)
             {
                 GameObject fog = game.transform.Find("Fog")?.gameObject;
-                Debug.Log(fog.name);
+                
 
                 GameObject tile = game.transform.Find("Sprite")?.gameObject;
 

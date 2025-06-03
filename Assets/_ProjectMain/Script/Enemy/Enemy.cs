@@ -584,6 +584,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        Debug.Log("Enemy Die");
         StopAllCoroutines();
         Destroy(gameObject);
     }

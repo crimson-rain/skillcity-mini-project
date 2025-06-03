@@ -131,9 +131,14 @@ public class Stats : MonoBehaviour
         xp += amount;
         if(xp >= xpToNextLevel)
         {
+
             level++;
             maxHealth += 5;
             damage += 1;
+
+            currentHealth = maxHealth;
+            UpdateHealthBar();
+
             levelText.text = ("Level " + level);
 
             xp -= xpToNextLevel;
