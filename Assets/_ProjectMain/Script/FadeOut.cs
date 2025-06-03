@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using TMPro;
 public static class FadeObject
 {
     public static IEnumerator Fade(float duration,float startAlpha, float endAlpha, Component target)
@@ -18,6 +18,10 @@ public static class FadeObject
         else if (target is Image image)
         {
             color = image.color;
+        }
+        else if(target is TMP_Text text)
+        {
+            color = text.color;
         }
         else
         {
@@ -38,6 +42,8 @@ public static class FadeObject
                 sr.color = newColor;
             else if (target is Image img)
                 img.color = newColor;
+            else if (target is TMP_Text text)
+                text.color = newColor;
 
             yield return null;
         }
@@ -48,5 +54,7 @@ public static class FadeObject
             finalSr.color = finalColor;
         else if (target is Image finalImg)
             finalImg.color = finalColor;
+        else if (target is TMP_Text text)
+            text.color = finalColor;
     }
 }

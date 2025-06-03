@@ -45,7 +45,7 @@ public class DamagePopup : MonoBehaviour
             textColor = Color.red;
         }
         textMesh.color = textColor;
-        disappearTimer = DISAPPEAR_TIMER_MAX + FADE_DURATION;
+        disappearTimer = 30f/*DISAPPEAR_TIMER_MAX + FADE_DURATION*/;
 
         moveVector = new Vector3(Random.Range(-MAX_RANDOM_OFFSET, MAX_RANDOM_OFFSET), 1, 0).normalized * MOVE_SPEED;
 

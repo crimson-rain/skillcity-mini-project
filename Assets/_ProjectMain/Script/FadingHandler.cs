@@ -1,17 +1,20 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 public class FadingHandler : MonoBehaviour
 {
     public float fadeDuration = 1f;
    
     public Image image;
     public SpriteRenderer spriteRenderer;
+    public TMP_Text text;
     private Component target;
     private void Start()
     {
         if (spriteRenderer != null) target = spriteRenderer;
         if(image != null)target = image;
+        if (text != null) target = text;
 
     }
 
@@ -26,7 +29,7 @@ public class FadingHandler : MonoBehaviour
 
         if (target != null)
         {
-            StartCoroutine(FadeAndDisable(target));
+            StartCoroutine(FadeAndDisable());
         }
         else
         {
@@ -37,7 +40,7 @@ public class FadingHandler : MonoBehaviour
     {
         if (target != null)
         {
-            StartCoroutine(FadeAndDisable(target));
+            StartCoroutine(FadeAndDisable());
         }
         else
         {
@@ -45,12 +48,17 @@ public class FadingHandler : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeAndDisable(Component target)
+    public IEnumerator FadeAndDisable()
     {
         yield return FadeObject.Fade(fadeDuration,1, 0, target);
         gameObject.SetActive(false); // Disable this object when fade is done
     }
-    private IEnumerator FadeIn(Component target)
+    public IEnumerator FadeAndDestroy()
+    {
+        yield return FadeObject.Fade(fadeDuration, 1, 0, target);
+        Destroy(gameObject); // Disable this object when fade is done
+    }
+    private IEnumerator FadeIn()
     {
         yield return FadeObject.Fade(fadeDuration, 0,1, target);
      

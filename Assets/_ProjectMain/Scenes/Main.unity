@@ -1304,7 +1304,7 @@ PrefabInstance:
     - target: {fileID: 5690772455851428558, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       propertyPath: damagePopupPrefab
       value: 
-      objectReference: {fileID: 3414530671598874934, guid: 8a6b57c6cd5d3dd4ebd2151c0bba2edd, type: 3}
+      objectReference: {fileID: 4828310570126409541, guid: ca8a30a602a66da4f9031b0ae8664baf, type: 3}
     - target: {fileID: 7925764174844547210, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       propertyPath: targetCamera
       value: 

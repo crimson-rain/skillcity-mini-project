@@ -43,10 +43,10 @@ public class Stats : MonoBehaviour
     public bool multiplyXP;
 
     [Header("UI & Effects")]
-    public string damagePopupCanvasName = "DamagePopupCanvas";
+    //public string damagePopupCanvasName = "DamagePopupCanvas";
     public GameObject damagePopupPrefab;
-    public Transform damagePopupCanvas;
-    public Vector3 popupOffset = new Vector3(0, 3.5f, 0);
+    //public Transform damagePopupCanvas;
+    //public Vector3 popupOffset = new Vector3(0, 3.5f, 0);
 
 
     public string currentAction;
@@ -56,7 +56,9 @@ public class Stats : MonoBehaviour
 
     public int actionsPerTurn;
     public int actionsTaken;
-    
+
+    public GameObject enemyDamageIndicator;
+    public FadingHandler fadingHandler;
     public Stats(int level = 0, int energy = 0, int maxHealth = 0, PersonalityType personality = PersonalityType.None, int damage = 0, int detectionRange = 0)
     {
         this.level = level;
@@ -74,19 +76,7 @@ public class Stats : MonoBehaviour
         maxEnergy = energy;
         currentHealth = maxHealth;
 
-        if (damagePopupCanvas == null)
-        {
-            GameObject canvasObj = GameObject.Find(damagePopupCanvasName);
-            if (canvasObj != null)
-            {
-                damagePopupCanvas = canvasObj.transform;
-                Debug.Log(gameObject.name + ": Automatically found and assigned DamagePopupCanvas: " + damagePopupCanvas.name);
-            }
-            else
-            {
-                Debug.LogWarning(gameObject.name + ": DamagePopupCanvas named '" + damagePopupCanvasName + "' not found in scene. Popups may not work. Please assign it manually or check the name.");
-            }
-        }
+  
 
         IncreaseForFloor();
         UpdateHealthBar();
@@ -118,16 +108,31 @@ public class Stats : MonoBehaviour
 
     private void DamageIndicatorPopUp(float damageAmount)
     {
-        if (damagePopupPrefab != null && damagePopupCanvas != null)
+        if(enemyDamageIndicator != null)
         {
-            Vector3 spawnPosition = transform.position + popupOffset;
+            enemyDamageIndicator.SetActive(true);
+            TMP_Text text = GetComponentInChildren<TMP_Text>();
+            text.text = damageAmount.ToString();
+            StartCoroutine(fadingHandler.FadeAndDisable());
+            return;
+        }
 
-            DamagePopup.Create(spawnPosition, damageAmount, damagePopupCanvas, damagePopupPrefab);
+
+        if (damagePopupPrefab != null )
+        {
+            Debug.Log("Instantiating popup on " + gameObject.name);
+            
+            Vector3 spawnPosition = transform.position ;
+            GameObject indicator = Instantiate(damagePopupPrefab,spawnPosition,transform.rotation);
+            TMP_Text text = indicator.GetComponentInChildren<TMP_Text>();
+            text.text = damageAmount.ToString();
+           
+            //DamagePopup.Create(spawnPosition, damageAmount, damagePopupCanvas, damagePopupPrefab);
         }
         else
         {
             if (damagePopupPrefab == null) Debug.LogWarning("Damage Popup Prefab not assigned on " + gameObject.name);
-            if (damagePopupCanvas == null) Debug.LogWarning("Damage Popup Canvas not assigned on " + gameObject.name);
+            //if (damagePopupCanvas == null) Debug.LogWarning("Damage Popup Canvas not assigned on " + gameObject.name);
         }
     }
 
