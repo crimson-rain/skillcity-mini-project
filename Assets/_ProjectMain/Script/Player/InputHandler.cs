@@ -11,6 +11,10 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
     public event Action<int > AbilitySwitchEvent;
     public event Action<int> ItemSwitchEvent;
 
+    public Vector2 MouseVector { get; private set; }
+    public Vector2 ZoomDelta { get; private set; }
+    public bool isLook { get; private set; }
+
     private Controls controls;
 
     private void Start()
@@ -94,5 +98,30 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
     {
         if (!context.performed) return;
         ItemSwitchEvent?.Invoke(2);
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+
+        if (context.performed) // the key has been pressed
+        {
+            isLook = true;
+        }
+        if (context.canceled) //the key has been released
+        {
+            isLook = false;
+        }
+    }
+
+    public void OnMouseDelta(InputAction.CallbackContext context)
+    {
+        MouseVector = context.ReadValue<Vector2>();
+    }
+
+    public void OnZoom(InputAction.CallbackContext context)
+    {
+
+        ZoomDelta = context.ReadValue<Vector2>();
+        Debug.Log("Zoom Delta: " + ZoomDelta);
     }
 }

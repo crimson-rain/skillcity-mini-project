@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 121144342}
   - component: {fileID: 121144341}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Inv 2 Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15255cb9210fcaf4d97a3c9df310c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 121144342}
 --- !u!114 &121144342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15255cb9210fcaf4d97a3c9df310c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 194646978}
 --- !u!114 &194646978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,6 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15255cb9210fcaf4d97a3c9df310c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 864715291}
 --- !u!114 &864715291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,6 +1051,7 @@ GameObject:
   - component: {fileID: 1467323364}
   - component: {fileID: 1467323363}
   - component: {fileID: 1467323362}
+  - component: {fileID: 1467323365}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1068,7 +1072,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1357860401}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: -45, z: 0}
 --- !u!114 &1467323362
 MonoBehaviour:
@@ -1173,6 +1177,31 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1467323365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467323360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b52eec6dc3db448abbf027792713ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputHandler: {fileID: 1357860404}
+  player: {fileID: 1357860401}
+  rotationSpeed: 0.5
+  posDampingPassive: 0.5
+  posDampingActive: 3
+  rotDampingPassive: 2
+  rotDampingActive: 10
+  offset: {x: 0, y: 0, z: 0}
+  zoomSpeed: 2
+  camMinDist: 2
+  camMaxDist: 10
+  camDistance: 0
+  cameraMinY: 2
 --- !u!1001 &1521622666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1221,14 +1250,74 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2513843081023379777, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 683ee6fac52c46047900e357ab4fffa4, type: 3}
+    - target: {fileID: 3594244851319363474, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594244851319363474, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594244851319363474, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594244851319363474, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       propertyPath: text
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 1658352165}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       propertyPath: floorLayerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.data[0].Key
+      value: Weak Slash
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.data[1].Key
+      value: Strong Slash
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.data[2].Key
+      value: Place Mine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.data[3].Key
+      value: Throw Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.data[0].Value
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d82d34899bae8842bedf87602c26e84, type: 3}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.data[1].Value
+      value: 
+      objectReference: {fileID: 21300000, guid: e7c29d1d1b6f6a440a7773c93b726a5c, type: 3}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.data[2].Value
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a714774cd63ba747a71089fa62471f5, type: 3}
+    - target: {fileID: 3977523040094323335, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      propertyPath: abilitySprites._serializedList.Array.data[3].Value
+      value: 
+      objectReference: {fileID: 21300000, guid: 25a3e85079bbeb24dbb8dfe0a4cc600c, type: 3}
     - target: {fileID: 4619996578354712834, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1267,10 +1356,7 @@ PrefabInstance:
       objectReference: {fileID: 481434385}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 721567574693759763, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1467323361}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4619996578354712834, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       insertIndex: -1
@@ -1376,7 +1462,7 @@ GameObject:
   - component: {fileID: 1658352166}
   - component: {fileID: 1658352165}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AbilityIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1413,6 +1499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15255cb9210fcaf4d97a3c9df310c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 1658352166}
 --- !u!114 &1658352166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2359,6 +2446,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 481434384}
   - {fileID: 1281553778}
+  - {fileID: 1467323361}
   - {fileID: 1521622666}
   - {fileID: 4373187515579335129}
   - {fileID: 2118585537}

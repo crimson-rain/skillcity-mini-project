@@ -625,9 +625,11 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
     }
+
     private void OnDestroy()
     {
         StopAllCoroutines();
+        Destroy(gameObject);
     }
 
 }

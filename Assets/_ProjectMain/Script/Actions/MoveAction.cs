@@ -43,4 +43,9 @@ public class MoveAction : GameAction
         TileType[,] grid = player.dungeonGridContainer.dungeon;
         return grid[pos.x, pos.y] != TileType.Wall;
     }
+    public void Halt()
+    {
+        
+    }
+
 }

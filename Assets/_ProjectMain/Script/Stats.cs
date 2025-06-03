@@ -103,6 +103,7 @@ public class Stats : MonoBehaviour
         if(personality == PersonalityType.Player)
         {
             SaveHighScore(TurnManager.Instance.FLoorNumber);
+            //TurnManager.Instance.HaltTurnManager();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
