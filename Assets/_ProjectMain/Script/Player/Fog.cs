@@ -7,7 +7,7 @@ public class Fog : MonoBehaviour
     void Start()
     {
         dungeonContainer = FindAnyObjectByType<DungeonContainer>();
-
+        if (detectionrange == 0) detectionrange = 5;
     }
     public void ExposeTiles()
     {
@@ -17,11 +17,24 @@ public class Fog : MonoBehaviour
 
         foreach(GameObject game in Tiles)
         {
-            if (game.activeSelf) continue;
+
+            if (game.transform.Find("Sprite").gameObject.activeSelf) continue;
             var tilePos = GridUtility.WorldToGridPosition(game.transform.position);
             var range = PathfindingUtility.GetPathLength(playerPos, tilePos);
-            if (range <= detectionrange) game.SetActive(true);
-            if (playerPos == tilePos) game.SetActive(true);
+            if (range <= detectionrange || playerPos == tilePos)
+            {
+                GameObject fog = game.transform.Find("Fog")?.gameObject;
+                Debug.Log(fog.name);
+
+                GameObject tile = game.transform.Find("Sprite")?.gameObject;
+
+
+                fog.SetActive(false);///set the fog to false 
+                tile.SetActive(true);//set the sprite to true
+
+            }
+         
+            
 
         }
 

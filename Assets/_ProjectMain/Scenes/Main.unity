@@ -651,6 +651,37 @@ MonoBehaviour:
   turnsToSpawn: -1
   dungeonContainer: {fileID: 481434385}
   spawnTurn: 0
+--- !u!1 &558832576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558832577}
+  m_Layer: 0
+  m_Name: Fog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &558832577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558832576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.95219, y: -1.0330429, z: 23.196451}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &568388439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,10 +1053,10 @@ MonoBehaviour:
   - {fileID: 0}
   debug: 0
   inventorycount: 0
-  inventoryText:
-  - {fileID: 1405558780}
-  - {fileID: 128256859}
-  - {fileID: 227581056}
+  inventoryImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1357860411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1050,8 +1081,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1405558779}
-  - component: {fileID: 1405558781}
-  - component: {fileID: 1405558780}
   m_Layer: 0
   m_Name: Text (TMP) (2)
   m_TagString: Untagged
@@ -1256,6 +1285,7 @@ MonoBehaviour:
   camMaxDist: 10
   camDistance: 0
   cameraMinY: 2
+  scroll: 0
 --- !u!114 &1467323366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,6 +1505,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4619996578354712834, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1357860411}
+    - targetCorrespondingSourceObject: {fileID: 4619996578354712834, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1405558780}
     - targetCorrespondingSourceObject: {fileID: 924367750734472570, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1725319613}
@@ -2536,6 +2569,7 @@ RectTransform:
   - {fileID: 353794495}
   - {fileID: 568388440}
   - {fileID: 1658352164}
+  - {fileID: 1405558779}
   m_Father: {fileID: 4373187515579335129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2554,3 +2588,4 @@ SceneRoots:
   - {fileID: 1521622666}
   - {fileID: 4373187515579335129}
   - {fileID: 2118585537}
+  - {fileID: 558832577}
