@@ -96,6 +96,8 @@ public class Stats : MonoBehaviour
             currentHealth = maxHealth;
             Debug.Log("Increasing Max Health");
         }
+        UpdateHealthBar();
+
     }
     public void Die()
     {
