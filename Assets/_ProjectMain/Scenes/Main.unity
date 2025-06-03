@@ -1054,9 +1054,9 @@ MonoBehaviour:
   debug: 0
   inventorycount: 0
   inventoryImage:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 194646978}
+  - {fileID: 121144342}
+  - {fileID: 864715291}
 --- !u!114 &1357860411
 MonoBehaviour:
   m_ObjectHideFlags: 0
