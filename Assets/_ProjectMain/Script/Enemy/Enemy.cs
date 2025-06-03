@@ -36,7 +36,8 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator TakeTurn()
     {
-        if(gameObject == null)
+        if (this == null || gameObject == null) yield break;
+        if (gameObject == null)
         {
             Debug.Log("Null reference to seld");
             yield return null;  
@@ -200,7 +201,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator MoveStep()
     {
 
-
+        if (this == null || gameObject == null) yield break;
 
         if (target == null) yield break;
 
@@ -246,7 +247,9 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator AttackPlayer()
     {
-       if(CheckInRange(stats.attackRange))
+        if (this == null || gameObject == null) yield break;
+
+        if (CheckInRange(stats.attackRange))
         {
 
             IEnemyAttackBase enemyAttack = GetComponent<IEnemyAttackBase>();
@@ -325,19 +328,28 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator StepTo(Vector2Int position)
     {
+        if (!this || !this.gameObject) yield break;
+
         Vector3 targetPos = GridUtility.GridToWorldPosition(position);
         float duration = 0.1f;
         float elapsed = 0f;
+
+        // You must guard access to `transform` after each yield
         Vector3 start = transform.position;
 
         while (elapsed < duration)
         {
+            if (this == null || gameObject == null) yield break;
+
+            // Avoid accessing transform directly after a yield
             transform.position = Vector3.Lerp(start, targetPos, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
+
+        if (this == null || gameObject == null) yield break;
         transform.position = targetPos;
+
         CheckForMine();
     }
 
@@ -381,26 +393,14 @@ public class Enemy : MonoBehaviour
         return distance <= range;
     }
 
-    //bool CheckLock(string type)
-    //{
-    //    switch (type)
-    //    {
-    //        case "Move":
-    //        if (moveLock) return true;
-    //        break;
-    //        case "Attack":
-    //        if (attackLock) return true;
-    //        break;
-    //        case "Retreat":
-    //        if (retreatLock) return true;
-    //        break;
-    //    }
-    //    return false;
-    //}
 
 
     public IEnumerator RandomMoveStep()
     {
+
+       
+
+        if (this == null || gameObject == null) yield break;
         if (gameObject == null)
         {
             Debug.Log("Null reference to self");
@@ -462,6 +462,9 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator RandomMoveFarStep()
     {
+
+        if (this == null || gameObject == null) yield break;
+
         // 1) Get my current grid pos
         Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);
 
@@ -520,7 +523,9 @@ public class Enemy : MonoBehaviour
     /// Steps exactly one tile directly away from the player (8?way).
     /// </summary>
     public IEnumerator RetreatStep()
+        
     {
+        if (this == null || gameObject == null) yield break;
         if (target == null) { yield return new WaitForSeconds(delay); yield break; }
 
         Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);
@@ -569,6 +574,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator InstantStepTo(Vector2Int gridPos)
     {
+        if (this == null || gameObject == null) yield break;
         Vector3 worldPos = GridUtility.GridToWorldPosition(gridPos);
         transform.position = worldPos;
         CheckForMine();
