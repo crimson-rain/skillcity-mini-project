@@ -1051,6 +1051,7 @@ GameObject:
   - component: {fileID: 1467323364}
   - component: {fileID: 1467323363}
   - component: {fileID: 1467323362}
+  - component: {fileID: 1467323365}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1071,7 +1072,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1357860401}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: -45, z: 0}
 --- !u!114 &1467323362
 MonoBehaviour:
@@ -1176,6 +1177,31 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1467323365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467323360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b52eec6dc3db448abbf027792713ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputHandler: {fileID: 1357860404}
+  player: {fileID: 1357860401}
+  rotationSpeed: 0.5
+  posDampingPassive: 0.5
+  posDampingActive: 3
+  rotDampingPassive: 2
+  rotDampingActive: 10
+  offset: {x: 0, y: 0, z: 0}
+  zoomSpeed: 2
+  camMinDist: 2
+  camMaxDist: 10
+  camDistance: 0
+  cameraMinY: 2
 --- !u!1001 &1521622666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1330,10 +1356,7 @@ PrefabInstance:
       objectReference: {fileID: 481434385}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 721567574693759763, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1467323361}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4619996578354712834, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       insertIndex: -1
@@ -2423,6 +2446,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 481434384}
   - {fileID: 1281553778}
+  - {fileID: 1467323361}
   - {fileID: 1521622666}
   - {fileID: 4373187515579335129}
   - {fileID: 2118585537}

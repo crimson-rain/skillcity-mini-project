@@ -18,6 +18,7 @@ public class FreeCam : MonoBehaviour
     [SerializeField] private float camMaxDist = 10f; // Maximum camera distance
     [SerializeField] private float camDistance;
     [SerializeField] private float cameraMinY;
+    [SerializeField] private float scroll;
 
     private Vector3 targetPosition; // The position the camera is lerping toward
     private Quaternion targetRotation; // The rotation the camera is lerping toward
@@ -54,9 +55,12 @@ public class FreeCam : MonoBehaviour
             offset = Quaternion.AngleAxis(-mouseY, transform.right) * offset; // Vertical rotation
 
             // Handle zoom with scroll wheel
-            float scroll = inputHandler.ZoomDelta.y; //Input.GetAxis("Mouse ScrollWheel");
+            this.scroll = inputHandler.ZoomDelta.y; //Input.GetAxis("Mouse ScrollWheel");
+
+            Debug.Log(" [TRUE] Scroll Delta: " + this.scroll);
+
             camDistance = offset.magnitude;
-            camDistance = Mathf.Clamp(camDistance - scroll * zoomSpeed, camMinDist, camMaxDist);
+            camDistance = Mathf.Clamp(camDistance - this.scroll * zoomSpeed, camMinDist, camMaxDist);
             offset = offset.normalized * camDistance;
 
             // Calculate the target position
@@ -79,9 +83,12 @@ public class FreeCam : MonoBehaviour
         {
 
             // Handle zoom with scroll wheel
-            float scroll = inputHandler.ZoomDelta.y; //Input.GetAxis("Mouse ScrollWheel");
+            this.scroll = inputHandler.ZoomDelta.y; //Input.GetAxis("Mouse ScrollWheel");
+
+            Debug.Log("[FALSE] Scroll Delta: " + this.scroll);
+
             camDistance = offset.magnitude;
-            camDistance = Mathf.Clamp(camDistance - scroll * zoomSpeed, camMinDist, camMaxDist);
+            camDistance = Mathf.Clamp(camDistance - this.scroll * zoomSpeed, camMinDist, camMaxDist);
             offset = offset.normalized * camDistance;
 
             // Calculate the target position
