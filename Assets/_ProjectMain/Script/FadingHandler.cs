@@ -26,6 +26,7 @@ public class FadingHandler : MonoBehaviour
 
         if (spriteRenderer != null) target = spriteRenderer;
         if (image != null) target = image;
+        if (text != null) target = text;
 
         if (target != null)
         {
@@ -51,6 +52,7 @@ public class FadingHandler : MonoBehaviour
     public IEnumerator FadeAndDisable()
     {
         yield return FadeObject.Fade(fadeDuration,1, 0, target);
+
         gameObject.SetActive(false); // Disable this object when fade is done
     }
     public IEnumerator FadeAndDestroy()

@@ -113,7 +113,10 @@ public class Stats : MonoBehaviour
             enemyDamageIndicator.SetActive(true);
             TMP_Text text = GetComponentInChildren<TMP_Text>();
             text.text = damageAmount.ToString();
-            StartCoroutine(fadingHandler.FadeAndDisable());
+
+            Debug.Log("Fading");
+            fadingHandler.StartFadeOut();
+            Debug.Log("Finished Fading");
             return;
         }
 

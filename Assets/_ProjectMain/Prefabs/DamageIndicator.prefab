@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f7dbd632456004b81cac6ee0578948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
+  fadeDuration: 1.5
   image: {fileID: 0}
   spriteRenderer: {fileID: 0}
   text: {fileID: 2423420730976967831}
@@ -349,5 +349,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45df2a5468324d4a8699430bbfc381a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTimeBeforeFade: 1
+  lifeTimeBeforeFade: 0
   willDecay: 1
