@@ -31,6 +31,7 @@ public class DungeonGenerator : MonoBehaviour
     public ItemSpawner itemSpawner;
     public TrapSpawner trapSpawner;
     public StairsSpawner stairsSpawner;
+    public int growOnFloor;
     private void Start()
     {
         dungeonGridContainer = GetComponent<DungeonContainer>();
@@ -71,8 +72,8 @@ public class DungeonGenerator : MonoBehaviour
         // Adjust dimensions
         Vector2Int dungeonSize = DungeonUtility.CalculateDungeonSize(
             defaultSettings.width, defaultSettings.height, roomNumX, roomNumY, dungeonBorder, roomPadding);
-        dungeonSizeX = dungeonSize.x;
-        dungeonSizeY = dungeonSize.y;
+        dungeonSizeX = dungeonSize.x + (growOnFloor * TurnManager.Instance.FLoorNumber);
+        dungeonSizeY = dungeonSize.y+(growOnFloor * TurnManager.Instance.FLoorNumber);
 
         //Fills the area of the dungeon with blank walls 
         dungeonGrid = dungeonGridContainer.CreateDungeonGrid(dungeonSizeX, dungeonSizeY);
