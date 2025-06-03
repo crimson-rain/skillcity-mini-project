@@ -37,6 +37,7 @@ public class ThrownWeaponScript : MonoBehaviour
            
             foreach (var e in enemies)
             {
+                if (e == null) continue;
                 Vector2Int enemyPos = GridUtility.WorldToGridPosition(e.transform.position);
                 if (enemyPos == currentGrid)
                 {
