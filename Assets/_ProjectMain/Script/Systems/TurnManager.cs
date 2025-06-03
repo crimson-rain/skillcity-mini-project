@@ -68,17 +68,20 @@ public class TurnManager : MonoBehaviour
     // Process enemy turn
     public IEnumerator EnemyTurn()
     {
+        if (player == null) yield break;
+
         Stats playerStats = player.GetComponent<Stats>();
 
         if (playerStats.actionsTaken < playerStats.actionsPerTurn) yield return playerStats.actionsTaken++;
 
         playerStats.actionsTaken = 0;
+
         // Update spawners
         EnemySpawner[] es = dungeonGeneration.GetComponents<EnemySpawner>();
 
         foreach(var enemy in es)
         {
-            enemy.IncreaseTurnCounter();
+            if (enemy != null) enemy.IncreaseTurnCounter(); 
         }
          
         // Process indvidual enemy action
@@ -86,8 +89,7 @@ public class TurnManager : MonoBehaviour
 
         foreach (var e in enemies)
         {
-            if (e == null)
-                continue; 
+            if (e == null) continue; 
             yield return e.TakeTurn();
         }
     }
@@ -96,5 +98,4 @@ public class TurnManager : MonoBehaviour
     {
         StopAllCoroutines();
     }
-
 }

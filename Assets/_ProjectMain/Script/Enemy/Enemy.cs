@@ -198,9 +198,6 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator MoveStep()
     {
-
-
-
         if (target == null) yield break;
 
         Vector2Int myPos = GridUtility.WorldToGridPosition(transform.position);

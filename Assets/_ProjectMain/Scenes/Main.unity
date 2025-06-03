@@ -1157,10 +1157,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -1.5
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 3
   m_Depth: 0
   m_CullingMask:
@@ -1202,6 +1202,7 @@ MonoBehaviour:
   camMaxDist: 10
   camDistance: 0
   cameraMinY: 2
+  scroll: 0
 --- !u!1001 &1521622666
 PrefabInstance:
   m_ObjectHideFlags: 0

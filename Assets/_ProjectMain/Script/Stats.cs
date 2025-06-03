@@ -86,7 +86,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    public void Heal (float amount)
+    public void Heal(float amount)
     {
 
         currentHealth += amount;
@@ -100,6 +100,7 @@ public class Stats : MonoBehaviour
     public void Die()
     {
         maxHealth = 0;
+
         if(personality == PersonalityType.Player)
         {
             SaveHighScore(TurnManager.Instance.FLoorNumber);
@@ -108,11 +109,17 @@ public class Stats : MonoBehaviour
         }
         else
         {
-            //Get player stats
-            Stats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>();
-            //Add experience to player 
-            playerStats.AddXP(xpOnDeath);
-            
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                Stats playerStat = player.GetComponent<Stats>();
+                if (playerStat != null)
+                {
+                    playerStat.AddXP(xpOnDeath);
+                }
+            }
+           
             Destroy(gameObject);
         }
 
