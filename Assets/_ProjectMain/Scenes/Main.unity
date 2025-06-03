@@ -651,37 +651,6 @@ MonoBehaviour:
   turnsToSpawn: -1
   dungeonContainer: {fileID: 481434385}
   spawnTurn: 0
---- !u!1 &558832576
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 558832577}
-  m_Layer: 0
-  m_Name: Fog
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &558832577
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558832576}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.95219, y: -1.0330429, z: 23.196451}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &568388439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,7 +1124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1357860401}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: -45, z: 0}
 --- !u!114 &1467323362
 MonoBehaviour:
@@ -1488,10 +1457,7 @@ PrefabInstance:
       objectReference: {fileID: 481434385}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 721567574693759763, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1467323361}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4619996578354712834, guid: d65a87e363eda4041ab8515cef10ad94, type: 3}
       insertIndex: -1
@@ -2581,6 +2547,7 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1467323361}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 481434384}
@@ -2588,4 +2555,3 @@ SceneRoots:
   - {fileID: 1521622666}
   - {fileID: 4373187515579335129}
   - {fileID: 2118585537}
-  - {fileID: 558832577}

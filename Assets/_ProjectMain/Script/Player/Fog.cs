@@ -29,7 +29,7 @@ public class Fog : MonoBehaviour
                 GameObject tile = game.transform.Find("Sprite")?.gameObject;
 
 
-                fog.SetActive(false);///set the fog to false 
+                fog.GetComponent<FadingHandler>().StartFadeOut();///set the fog to false 
                 tile.SetActive(true);//set the sprite to true
 
             }
