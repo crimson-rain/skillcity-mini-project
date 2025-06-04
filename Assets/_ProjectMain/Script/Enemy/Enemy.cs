@@ -39,11 +39,13 @@ public class Enemy : MonoBehaviour
         if (this == null || gameObject == null) yield break;
         if (gameObject == null)
         {
+            yield break;
             Debug.Log("Null reference to seld");
             yield return null;  
         }
         if(target == null)
         {
+            yield break;
             Debug.Log("Null reference to target");
             yield return null;
         }
