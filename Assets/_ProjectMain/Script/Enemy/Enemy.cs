@@ -214,28 +214,12 @@ public class Enemy : MonoBehaviour
         {
             Vector2Int nextStep = path[0];
 
-            // 1) Don't step onto the player
-            if (nextStep == playerPos)
+            if (!CanStepTo(nextStep))
             {
                 yield return new WaitForSeconds(delay);
                 yield break;
             }
 
-            // 2) Don't step onto another enemy
-            Enemy[] allEnemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-            foreach (var other in allEnemies)
-            {
-                if (other == this) continue;
-                Vector2Int otherPos = GridUtility.WorldToGridPosition(other.transform.position);
-                if (nextStep == otherPos)
-                {
-                    // blocked by another enemy
-                    yield return new WaitForSeconds(delay);
-                    yield break;
-                }
-            }
-
-            // 3) If all clear, move
             yield return StepTo(nextStep);
         }
         else
@@ -519,9 +503,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Steps exactly one tile directly away from the player (8?way).
-    /// </summary>
+  
     public IEnumerator RetreatStep()
         
     {
@@ -587,6 +569,37 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy Die");
         StopAllCoroutines();
         Destroy(gameObject);
+    }
+
+    private bool CanStepTo(Vector2Int position)
+    {
+        var grid = dungeonContainer.dungeon;
+
+        int w = grid.GetLength(0), h = grid.GetLength(1);
+
+        // Check bounds
+        if (position.x < 0 || position.x >= w || position.y < 0 || position.y >= h)
+            return false;
+
+        // Only step on floor tiles
+        if (grid[position.x, position.y] != TileType.Floor)
+            return false;
+
+        // Don't walk into other enemies
+        foreach (var enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+        {
+            if (enemy == this) continue;
+            Vector2Int otherPos = GridUtility.WorldToGridPosition(enemy.transform.position);
+            if (position == otherPos)
+                return false;
+        }
+
+        // Don't step on the player
+        Vector2Int playerPos = GridUtility.WorldToGridPosition(target.transform.position);
+        if (position == playerPos)
+            return false;
+
+        return true;
     }
 
 }
